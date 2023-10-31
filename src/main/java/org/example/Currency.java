@@ -5,19 +5,24 @@ public class Currency {
   private String symbol;
 
   public Currency(int amount, String symbol) {
-
     this.amount = amount;
     this.symbol = symbol;
   }
 
+  // 幣值相加的換算處理
   public Currency add(Currency other) {
+    // NT + US
     if (other.getSymbol().equals("NT") && this.symbol.equals("US")) {
       int a = this.amount + other.nt2us();
       return new Currency(a, "US");
-    } else if (other.getSymbol().equals("US") && this.symbol.equals("NT")) {
+    }
+    // US + NT
+    else if (other.getSymbol().equals("US") && this.symbol.equals("NT")) {
       int a = this.amount + other.us2nt();
       return new Currency(a, "NT");
-    } else {
+    }
+    // NT + NT || US + US
+    else {
       int a = this.amount + other.getAmount();
       return new Currency(a, this.getSymbol());
     }
@@ -25,11 +30,11 @@ public class Currency {
 
   public int nt2us() {
     return amount * 30;
-  }
+  } // NT 轉 US
 
   public int us2nt() {
     return amount / 30;
-  }
+  } // US 轉 NT
 
   public String getSymbol() {
     return symbol;

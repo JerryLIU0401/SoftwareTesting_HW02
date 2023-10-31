@@ -11,6 +11,7 @@ class BMICalculatorTest {
   @CsvSource({"1.7, 63.0",
   "0.0, 0.0",
   "-1.0, 60.0"})
+  // 測試BMI計算答案
   public void testCalculator(double h, double w) {
     BMICalculator bmiCalculator = new BMICalculator(h, w);
     double result = bmiCalculator.getBmi();
